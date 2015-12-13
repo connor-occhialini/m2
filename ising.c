@@ -117,6 +117,7 @@ double energy_per_spin (struct ising *model)
 			int dinext = (i == 0)? lx - 1: i - 1;
 			int djnext = (j == ly - 1) ? 0 : j + 1;
 
+	    //one diagonal term added for energy computation for triangular lattice, s[dinext][djnext].
             ssum += s[i][j] * (s[inext][j] + s[i][jnext] + s[dinext][djnext]);
         }
     }

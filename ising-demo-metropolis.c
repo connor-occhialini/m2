@@ -14,23 +14,23 @@ int main (int argc, char **argv)
 
     struct ising model;
 
-    double tmin=3.5, tmax=3.8, dt,t=tmin;                   // temperature (kT)
-    double h = 0.;                   // magnetic field
-    double j = 1.;                   // ferromagnetic coupling
-    int nt = 8;
-    dt = (tmax-tmin)/(nt-1);
+    double tmin=3.5, tmax=3.8, dt,t=tmin;       //temperature range           
+    double h = 0.;                  	        //magnetic field (held at zero)
+    double j = 1.;                 		//coupling strength 
+    int nt = 8;					//total number of temperatures to compute
+    dt = (tmax-tmin)/(nt-1);			//temperature increment
     int lx = 32;
     int ly = lx;
-    double specheat[nt];
-    double temperat[nt];
+    double specheat[nt];			//specific heat value array
+    double temperat[nt];			//temperature value array
     
-    for(int v = 0; v < nt; v++)
+    for(int v = 0; v < nt; v++)			//temperature array initialization
     {
         temperat[v] = tmin + v*dt;
     }
 
 
-    int mcsteps = 1024 * 128;        // 2^{17}
+    int mcsteps = 1024 * 128;        		//total number of steps
 
     if( ising_init (&model, lx, ly, j, h, t) != 0)
     {
@@ -44,7 +44,7 @@ int main (int argc, char **argv)
     int therm_steps = mcsteps / 4;
     int report = therm_steps / 32;
     
-    for(i = 0; i < nt; i++)
+    for(i = 0; i < nt; i++)				//loop over temperatures
     {
     for (int s = 1; s <= therm_steps; s++)
     {
@@ -97,7 +97,7 @@ int main (int argc, char **argv)
     ising_reinit (&model,h,t);
     }
     ising_free (model);
-    pfun(temperat, specheat, nt);
+    pfun(temperat, specheat, nt);			//function plots specific heat vs. temperature
     return 0;
 }
 

@@ -13,7 +13,7 @@ struct ising
     double H;                   // magnetic field
     gsl_rng *r;                 // random number generator
     unsigned long seed;         // rng seed
-    double w[25][3];            // Boltzmann factors
+    double w[25][3];            // Boltzmann factors, number of energy states increased from 16 to 24.
     int **cluster;              // spin cluster labels
     double addprobability;      // probability to add like spin
 };

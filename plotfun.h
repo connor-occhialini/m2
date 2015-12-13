@@ -2,6 +2,7 @@
 #include <stdio.h>
 #define COMMANDS 2
 
+//takes arguments from array structures and outputs a GNUPLOT of the data with connecting lines.
 void pfun(double x[], double y[], int points)
 {
     char * commandsForGnuplot[] = {"set title \"Specific Heat versus Temperature\"", "plot 'data.temp' w l"};
